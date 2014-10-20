@@ -23,21 +23,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="W:/training9_spring4/apache-tomcat-8.0.12/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="W:/training9_spring4/apache-tomcat-8.0.12/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-io-2.2.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-beans-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-context-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-core-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-expression-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-web-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/sizeof.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javax.faces-api-2.2.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javax.inject-1.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/slf4j-api-1.5.6.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mockito-all-1.9.5.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/slf4j-jdk14-1.5.6.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
