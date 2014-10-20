@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
@@ -14,14 +15,23 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 public class SessionListenerTest {
 
     static HttpSessionEvent setupEvent(Object obj) {
 	HttpSession sess = mock(HttpSession.class);
-	final Vector<String> names = new Vector<>();
-	names.add("name");
-	when(sess.getAttributeNames()).thenReturn(names.elements());
+	when(sess.getAttributeNames()).thenAnswer(
+		new Answer<Enumeration<String>>() {
+		    @Override
+		    public Enumeration<String> answer(
+			    InvocationOnMock invocation) throws Throwable {
+			final Vector<String> names = new Vector<>();
+			names.add("name");
+			return names.elements();
+		    }
+		});
 	when(sess.getAttribute("name")).thenReturn(obj);
 	HttpSessionEvent e = new HttpSessionEvent(sess);
 	return e;
@@ -36,6 +46,8 @@ public class SessionListenerTest {
     public void testOneSession() throws IllegalArgumentException,
 	    IllegalAccessException {
 	SessionListener sl = new SessionListener();
+	sl.clearAllSessionForTesting();
+
 	Object obj = buildObject(new Object[] { "obj1" }, "name1",
 		Arrays.asList("object1"));
 	HttpSessionEvent e = setupEvent(obj);
@@ -53,6 +65,8 @@ public class SessionListenerTest {
     public void testTwoSessionsWithNoDuplicates()
 	    throws IllegalArgumentException, IllegalAccessException {
 	SessionListener sl = new SessionListener();
+	sl.clearAllSessionForTesting();
+
 	Object obj1 = buildObject(new Object[] { new String("obj1") }, "name1",
 		Arrays.asList(new String("object1")));
 	HttpSessionEvent e1 = setupEvent(obj1);
@@ -69,26 +83,14 @@ public class SessionListenerTest {
 
 	duplicateObjects = SessionListener.getDuplicateObjects(e2.getSession());
 	assertEquals(0, duplicateObjects.size());
-
-	sl.sessionDestroyed(e1);
-	sl.sessionDestroyed(e2);
     }
 
     @Test
-    public void testTwoSessionsWithADuplicate1()
-	    throws IllegalArgumentException, IllegalAccessException {
-	testTwoSessionsWithDuplicates(true);
-    }
-
-    @Test
-    public void testTwoSessionsWithADuplicate2()
-	    throws IllegalArgumentException, IllegalAccessException {
-	testTwoSessionsWithDuplicates(false);
-    }
-
-    private void testTwoSessionsWithDuplicates(boolean testFirstSession)
+    public void testTwoSessionsWithADuplicate()
 	    throws IllegalArgumentException, IllegalAccessException {
 	SessionListener sl = new SessionListener();
+	sl.clearAllSessionForTesting();
+
 	final Object duplicate1 = "duplicate1";
 	final Object duplicate2 = "duplicate2";
 	final String duplicate3 = "duplicate3";
@@ -102,13 +104,8 @@ public class SessionListenerTest {
 	HttpSessionEvent e2 = setupEvent(obj2);
 	sl.sessionCreated(e2);
 
-	// because we are using mocks, the enumeration of attribute names cannot
-	// be walked twice
-	// hence we run this test twice, and test each session once
-	assertDuplicates(testFirstSession ? e1 : e2);
-
-	sl.sessionDestroyed(e1);
-	sl.sessionDestroyed(e2);
+	assertDuplicates(e1);
+	assertDuplicates(e2);
     }
 
     private void assertDuplicates(HttpSessionEvent e)

@@ -65,6 +65,10 @@ public class SessionListener implements HttpSessionListener {
 	logActiveSessions();
     }
 
+    void clearAllSessionForTesting() {
+	sessions.clear();
+    }
+
     private void logActiveSessions() {
 	LOGGER.info("there are {} active sessions", sessions.size());
     }
