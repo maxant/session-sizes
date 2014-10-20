@@ -1,0 +1,90 @@
+referencing a spring bean in a session causes a reference to all beans:
+DestructionCallbackBindingListener
+  destructionCallback = org.springframework.web.context.request.DestructionCallbackBindingListener
+    beanPostProcessors = org.springframework.context.annotation.CommonAnnotationBeanPostProcessor
+      beanFactory => references all beans in all scopes!
+      
+
+-------- Session #1 -------------      
+INFO: collecting objects from given session
+INFO: 740549991	org.springframework.web.context.request.DestructionCallbackBindingListener@2c23e567
+INFO:  419666892	org.springframework.beans.factory.support.DisposableBeanAdapter@19039bcc
+INFO:   349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO:    1902249367	ch.maxant.session_sizes.services.DataService@71620597
+INFO:     1062062688	ch.maxant.session_sizes.services.MasterData@3f4dca60
+INFO:      98444097	[B@5de2341
+INFO:   0	null
+INFO:   968138593	viewInSessionScope
+INFO:   2080601223	false
+INFO:   1212963910	[org.springframework.context.annotation.CommonAnnotationBeanPostProcessor@27f4c1a6]
+INFO:    1014802981	[Ljava.lang.Object;@3c7caa25
+INFO:    1343058615	1
+INFO:   81250650	true
+INFO:   0	null
+INFO:   0	null
+INFO: 349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO: already visited 349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO: 1369107851	UTF-8
+
+-------- Session #1, again -------------      
+INFO: collecting objects from given session
+INFO: 740549991	org.springframework.web.context.request.DestructionCallbackBindingListener@2c23e567
+INFO:  419666892	org.springframework.beans.factory.support.DisposableBeanAdapter@19039bcc
+INFO:   349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO:    1902249367	ch.maxant.session_sizes.services.DataService@71620597
+INFO:     1062062688	ch.maxant.session_sizes.services.MasterData@3f4dca60
+INFO:      98444097	[B@5de2341
+INFO:   0	null
+INFO:   968138593	viewInSessionScope
+INFO:   967956332	false
+INFO:   1212963910	[org.springframework.context.annotation.CommonAnnotationBeanPostProcessor@27f4c1a6]
+INFO:    1014802981	[Ljava.lang.Object;@3c7caa25
+INFO:    1013203830	1
+INFO:   335067201	true
+INFO:   0	null
+INFO:   0	null
+INFO: 349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO: already visited 349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO: 1369107851	UTF-8
+      
+-------- Session #2 -------------
+INFO: collecting all known session objects
+INFO: 740549991	org.springframework.web.context.request.DestructionCallbackBindingListener@2c23e567
+INFO:  419666892	org.springframework.beans.factory.support.DisposableBeanAdapter@19039bcc
+INFO:   349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO:    1902249367	ch.maxant.session_sizes.services.DataService@71620597
+INFO:     1062062688	ch.maxant.session_sizes.services.MasterData@3f4dca60
+INFO:      98444097	[B@5de2341
+INFO:   0	null
+INFO:   968138593	viewInSessionScope
+INFO:   169255074	false
+INFO:   1212963910	[org.springframework.context.annotation.CommonAnnotationBeanPostProcessor@27f4c1a6]
+INFO:    1014802981	[Ljava.lang.Object;@3c7caa25
+INFO:    1793694950	1
+INFO:   195109625	true
+INFO:   0	null
+INFO:   0	null
+INFO: 349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO: already visited 349508365	ch.maxant.session_sizes.ui.ViewInSessionScope@14d5130d
+INFO: 1369107851	UTF-8
+
+INFO: collecting objects from given session
+INFO: 1693852533	org.springframework.web.context.request.DestructionCallbackBindingListener@64f62375
+INFO:  549709493	org.springframework.beans.factory.support.DisposableBeanAdapter@20c3e6b5
+INFO:   569680271	ch.maxant.session_sizes.ui.ViewInSessionScope@21f4a18f
+INFO:    1902249367	ch.maxant.session_sizes.services.DataService@71620597
+INFO:     1062062688	ch.maxant.session_sizes.services.MasterData@3f4dca60
+INFO:      98444097	[B@5de2341
+INFO:   0	null
+INFO:   968138593	viewInSessionScope
+INFO:   877835251	false
+INFO:   1587780584	[org.springframework.context.annotation.CommonAnnotationBeanPostProcessor@27f4c1a6]
+INFO:    1167451042	[Ljava.lang.Object;@4595e3a2
+INFO:    201197163	1
+INFO:   760653150	true
+INFO:   0	null
+INFO:   0	null
+INFO: 569680271	ch.maxant.session_sizes.ui.ViewInSessionScope@21f4a18f
+INFO: already visited 569680271	ch.maxant.session_sizes.ui.ViewInSessionScope@21f4a18f
+
+-------- Session #1, again, now that Session #2 exists -------------

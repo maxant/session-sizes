@@ -17,8 +17,16 @@ public class ViewInSessionScope implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * since tomcat and other ASs like to serialize session scoped attributes,
+	 * and DataService shouldn't be serializable because its a stateless service
+	 * we would like to make the following field transient. but doing so causes
+	 * null pointer exceptions when objects of this class are deserialized! as
+	 * such, its pointless declaring this class to be serializable. it is
+	 * serializable, but simply doesnt work after deserialization.
+	 */
 	@Inject
-	private DataService dataService;
+	private/* transient doesnt really work */DataService dataService;
 
 	public String getSizeOfData() {
 

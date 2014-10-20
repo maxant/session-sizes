@@ -13,7 +13,7 @@ session.setAttribute("someData", ds.generateData());
 %>
 <html>
 <body>
-I just put ten megs of rubbish in your session! <br/>
+I just put one meg of rubbish in your session! <br/>
 The session is <%=new SessionSizeHelper().getSessionSize(request) %> large.<br/>
 Session size according to library: <%=new SessionSizeHelper().getSessionSizeExcludingDuplicates(request) %><br/>
 

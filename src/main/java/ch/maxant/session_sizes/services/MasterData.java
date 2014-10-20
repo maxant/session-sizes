@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 @Scope("application")
 public class MasterData {
 
-	/**
-	 * some master data that only exists in the application once - the scope of
-	 * this service is application!
-	 */
-	private final byte[] masterData = new byte[10 * TEN_MEGS];
+    /**
+     * some master data that only exists in the application once - the scope of
+     * this service is application!
+     */
+    private final byte[] masterData = new byte[TEN_MEGS];
 
-	public byte[] getMasterData() {
-		return masterData;
-	}
+    public byte[] getMasterData() {
+	return masterData;
+    }
 }
